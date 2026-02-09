@@ -33,7 +33,7 @@ metadatas = []
 for i, chunk in enumerate(chunks):
     ids.append(f"chunk_{i}")
     documents.append(chunk.page_content)
-    vectors.append(embeddings.embed_query(chunk.page_content))
+    vectors.append(embeddings.embed_query(chunk.page_content)) # takes the string (chunk) and makes the vector 
     metadatas.append(chunk.metadata)
 
 
@@ -61,8 +61,23 @@ collection.add(
 
 print(f"Stored {collection.count()} chunks")
 
-# Later, query by similarity
-# results = collection.query(
-#     query_embeddings=[query_vector], # your question as a vector
-#     n_results=3 # top 3 matches
-# )
+# Test retrival, query by similarity
+
+query = "Who is Homer Simpson?"
+query_vector = embeddings.embed_query(query)
+
+results = collection.query(
+    query_embeddings=[query_vector], # your question as a vector
+    n_results=3 # top 3 matches
+)
+
+print(f"\nQuery: {query}")
+print(f"Top results:")
+for i, doc in enumerate(results['documents'][0]):
+    print(f"\n--- Result {i+1} ---")
+    print(doc)
+
+# your query vector might be [0.12, -0.45, 0.78, 0.33, ...] (768 total).
+# And each stored chunk has its own 768-number vector like [0.11, -0.44, 0.80, 0.31, ...].
+# Chroma compares the query vector against every stored vector using math (cosine similarity or distance) to find which ones "point in the same direction" — meaning similar meaning.
+# The closer the numbers match across all 768 dimensions, the more semantically similar the texts are. That's how "Who is Homer Simpson?" finds chunks that mention Homer even if they don't use those exact words.

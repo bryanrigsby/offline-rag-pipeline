@@ -15,6 +15,8 @@ messages = [
     )
 ]
 
+# smoke test
+
 response = model.invoke(messages)
 
 print(response.content)

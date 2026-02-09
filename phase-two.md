@@ -8,4 +8,5 @@ Generate embeddings for chunks — Use your OllamaEmbeddings from Phase 1. Embed
 Store in ChromaDB — Create a Chroma collection, add your chunks with their embeddings. Use persist_directory so it saves to disk (e.g., backend/.chroma/). Print the collection count to confirm storage.
 
 Test retrieval — Write a simple query against your collection. Use similarity_search with a question related to your PDF content. Print the top result. If it returns relevant text, your ingestion pipeline works.
+
 Commit — feat: document ingestion pipeline with chunking and vector storage
