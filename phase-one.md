@@ -1,3 +1,5 @@
+Phase 1 — Foundation
+
 Create project root — offline-rag/ with two subdirectories: backend/ and frontend/. Everything Python lives in backend/.
 Init Python env — cd backend, create a venv (python3 -m venv venv), activate it. Create a requirements.txt with your initial deps: langchain, langchain-community, chromadb, fastapi, uvicorn, pypdf. Pip install it.
 Install Ollama — if you haven't already, grab it from ollama.com.  make sure ollama is running on local machine - ollama serve. Then pull your model: ollama pull llama3.2 and the embedding model: ollama pull nomic-embed-text.
