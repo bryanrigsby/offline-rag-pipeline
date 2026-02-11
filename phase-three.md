@@ -5,6 +5,7 @@ Load existing ChromaDB collection — Use PersistentClient with same path, get_c
 Get user query — Start with a hardcoded question like "What is the threat level for Springfield?"
 Embed the query — Use OllamaEmbeddings to convert question to vector.
 Retrieve relevant chunks — Query ChromaDB for top 3-5 similar chunks.
+
 Build the prompt — Combine a system instruction + retrieved chunks + user question into one prompt. Something like:
 
    You are an intelligence analyst. Use only the following context to answer the question. Cite your sources.
