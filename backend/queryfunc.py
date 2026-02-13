@@ -1,13 +1,19 @@
 import chromadb
 import re
+import os
 from langchain_ollama import OllamaEmbeddings
 from langchain_ollama import ChatOllama
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MODEL = os.getenv("MODEL")
 
 client = chromadb.PersistentClient(path="./.chroma")
 collection = client.get_collection(
     name="springfield_docs"
 )
-model = ChatOllama(model="mistral", temperature=0)
+model = ChatOllama(model=MODEL, temperature=0)
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
 def is_suspicious(text: str) -> bool:
